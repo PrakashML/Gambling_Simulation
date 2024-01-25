@@ -1,13 +1,12 @@
 package com.workshop.gambling;
 import java.util.Random;
-
+import java.util.Random;
 public class Gambler {
     private int stake;
-    private int betAmount;
+    private final int betAmount = 1;
 
-    public Gambler(int initialStake, int betAmount) {
+    public Gambler(int initialStake) {
         this.stake = initialStake;
-        this.betAmount = betAmount;
     }
 
     public void playGame() {
@@ -34,10 +33,8 @@ public class Gambler {
     }
 
     public static void main(String[] args) {
-        Gambler gambler = new Gambler(100, 1);
+        Gambler gambler = new Gambler(100);
+
         gambler.simulateGames(20);
     }
-
-
 }
-
