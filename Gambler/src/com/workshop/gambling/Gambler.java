@@ -1,9 +1,9 @@
 package com.workshop.gambling;
 import java.util.Random;
-import java.util.Random;
 public class Gambler {
     private int stake;
     private final int betAmount = 1;
+    private final double resignThreshold = 0.5;
 
     public Gambler(int initialStake) {
         this.stake = initialStake;
@@ -21,7 +21,7 @@ public class Gambler {
         }
     }
 
-    public void simulateGames(int numGames) {
+    public void simulateGames(int numGames, int initialStake) {
         for (int i = 0; i < numGames; i++) {
             if (stake <= 0) {
                 System.out.println("Out of money. Game over.");
@@ -29,12 +29,20 @@ public class Gambler {
             }
 
             playGame();
+
+            if (stake >= (1 - resignThreshold) * initialStake || stake <= resignThreshold * initialStake) {
+                System.out.println("Resigning for the day. Current stake: $" + stake);
+                break;
+            }
         }
     }
 
     public static void main(String[] args) {
         Gambler gambler = new Gambler(100);
 
-        gambler.simulateGames(20);
+        gambler.simulateGames(20,100 );
     }
 }
+
+
+
