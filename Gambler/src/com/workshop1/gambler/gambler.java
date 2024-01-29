@@ -3,18 +3,7 @@ package com.workshop1.gambler;
 import java.util.Random;
 import java.util.Scanner;
 public class gambler {
-    int stake;
-    int bet;
-    int numgame;
-
-
-    public gambler() {
-        this.stake = 100;
-        this.bet = 1;
-        this.numgame = 10;
-    }
-
-    public static Boolean game(){
+    public static Boolean WinOrLoss(){
         if (Math.random()<0.5){
             return true;
         }
@@ -23,33 +12,40 @@ public class gambler {
         }
     }
 
-    public static void Simulategame(int stake, int bet, int numgame){
+    public static int simulateGambling(int initialStake, int betAmount, int numgame){
         String result;
-        for (int i=0; i<numgame; i++) {
-            if (game()) {
-                result = "win";
-                stake += bet;
+        int totalAmountWonOrLost=0;
+        for (int day=1; day<=numgame; day++) {
+            int currentStake = initialStake;
 
-            } else {
-                result = "lost";
-                stake -= bet;
+            while (currentStake > 50 && currentStake < 150) {
+
+                if (WinOrLoss()) {
+                    result = "win";
+                    currentStake += betAmount;
+
+                } else {
+                    result = "lost";
+                    currentStake -= betAmount;
+                }
             }
-            if (stake <= 50 || stake >= 150){
-                System.out.println("Not able to Play furthur");
-                break;
-            }
+            int amountWonOrLost = currentStake - initialStake;
+            totalAmountWonOrLost+=amountWonOrLost;
 
+            System.out.println("Day " + day + ": Amount Won or Lost - $ " + amountWonOrLost);
 
-            System.out.println("result: " + result);
-            System.out.println("stakeValue : " + stake);
         }
+        return totalAmountWonOrLost;
     }
 
 
     public static void main(String[] args) {
-        gambler g1 = new gambler();
-        g1.Simulategame(100, 1, 20);
-        System.out.println(g1);
+        int initialStake = 100;
+        int betAmount = 1;
+        int noOfDays = 20;
+
+        int totalAmountWonOrLost = simulateGambling(initialStake, betAmount, noOfDays);
+        System.out.println("Total amount won or lost after 20 days: $" + totalAmountWonOrLost);
 
 
     }
