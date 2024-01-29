@@ -1,7 +1,5 @@
 package com.workshop1.gambler;
 
-import java.util.Random;
-import java.util.Scanner;
 public class gambler {
     public static Boolean game(){
         if (Math.random()<0.5){
@@ -12,7 +10,7 @@ public class gambler {
         }
     }
 
-    private static void simulateGambling(int initialStake, int betAmount, int noOfDays, int noOfMonths, int numgame){
+    private static void simulateGambling(int initialStake, int betAmount, int noOfDays, int noOfMonths, int noOfGames){
         for (int month = 1; month <= noOfMonths; month++) {
             int totalAmountWonOrLost = 0;
             int totalDaysWon = 0;
@@ -25,7 +23,7 @@ public class gambler {
                 int currentStake = initialStake;
 
                 while (currentStake > 50 && currentStake < 150) {
-                    for ( int game = 1; game <= numgame; game++){
+                    for ( int game = 1; game <= noOfGames; game++){
                         if (game()) {
                             currentStake += betAmount;
                         }
@@ -61,7 +59,11 @@ public class gambler {
             System.out.println("Month " + month + " : Total Days Lost - " + totalDaysLost);
             System.out.println("Month " + month + " : Luckiest Day - " + luckiestDay + " ( Amount: $" + maxWin + " )");
             System.out.println("Month " + month + " : Unluckiest Day - " + unluckiestDay + " ( Amount: $" + maxLoss + " )");
+            if (totalAmountWonOrLost < 0){
+                break;
+            }
         }
+
     }
 
 
@@ -70,8 +72,12 @@ public class gambler {
         int betAmount = 1;
         int noOfDays = 20;
         int noOfMonths = 12;
-        int numgame = 100;
-        simulateGambling(initialStake, betAmount, noOfDays, noOfMonths, numgame);
+        int noOfGames = 100;
+        simulateGambling(initialStake, betAmount, noOfDays, noOfMonths, noOfGames);
+
+
+
+
 
     }
 }
