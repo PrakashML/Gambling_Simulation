@@ -1,0 +1,104 @@
+Index: src/com/workshop1/gambler/gambler.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.workshop1.gambler;\r\n\r\nimport java.util.Random;\r\nimport java.util.Scanner;\r\n\r\npublic class gambler {\r\n    int stake = 100;\r\n    int stakecalc = 100;\r\n    int bet = 1;\r\n    int numgames = 0;\r\n    public gambler(){\r\n        this.stake = stake;\r\n        this.bet = bet;\r\n    }\r\n    public void game(){\r\n        boolean win = new Random().nextBoolean();\r\n        if(win){\r\n            stakecalc+=bet;\r\n            System.out.println(\"You Won! Current stake: \"+ stakecalc);\r\n        }\r\n        else{\r\n            stakecalc-=bet;\r\n            System.out.println(\"You lose! Current stake: \"+ stakecalc);\r\n        }\r\n    }\r\n\r\n    public void simulategame(int n){\r\n        for(int i=0;i<n;i++){\r\n            numgames+=1;\r\n            if(stake <= 0){\r\n                System.out.println(\"Out of money, Game over\");\r\n                break;\r\n            }\r\n            game();\r\n            if(stakecalc<=0.5*stake){\r\n                System.out.println(\"Resigning for the Day. Current stake: \" + stakecalc);\r\n                System.out.println(\"No of games played for the day: \"+ numgames);\r\n                break;\r\n            }\r\n        }\r\n    }\r\n\r\n    public static void main(String[] args) {\r\n        gambler g1 = new gambler();\r\n        g1.simulategame(Integer.MAX_VALUE);\r\n\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/com/workshop1/gambler/gambler.java b/src/com/workshop1/gambler/gambler.java
+--- a/src/com/workshop1/gambler/gambler.java	(revision c24f6177b990eabca92ae03fa230c8b8f8cb6455)
++++ b/src/com/workshop1/gambler/gambler.java	(date 1706507406159)
+@@ -5,12 +5,13 @@
+ 
+ public class gambler {
+     int stake = 100;
+-    int stakecalc = 100;
++    int stakecalc = stake;
++    int numgame = 0;
+     int bet = 1;
+-    int numgames = 0;
+     public gambler(){
+         this.stake = stake;
+         this.bet = bet;
++        this.numgame = numgame;
+     }
+     public void game(){
+         boolean win = new Random().nextBoolean();
+@@ -24,9 +25,8 @@
+         }
+     }
+ 
+-    public void simulategame(int n){
+-        for(int i=0;i<n;i++){
+-            numgames+=1;
++    public void simulategame(int numgame){
++        for(int i=0;i<numgame;i++){
+             if(stake <= 0){
+                 System.out.println("Out of money, Game over");
+                 break;
+@@ -34,7 +34,7 @@
+             game();
+             if(stakecalc<=0.5*stake){
+                 System.out.println("Resigning for the Day. Current stake: " + stakecalc);
+-                System.out.println("No of games played for the day: "+ numgames);
++                System.out.println("No of games played for the day: "+ numgame);
+                 break;
+             }
+         }
+@@ -42,7 +42,7 @@
+ 
+     public static void main(String[] args) {
+         gambler g1 = new gambler();
+-        g1.simulategame(Integer.MAX_VALUE);
++        g1.simulategame(20);
+ 
+     }
+ }
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"85f0dd32-c519-4310-9e22-ded9930bdee7\" name=\"Changes\" comment=\"\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/com/workshop1/gambler/gambler.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/com/workshop1/gambler/gambler.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$/..\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 6\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2bahqS427HFVSmLuE5rptXxGXjS\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;Application.gambler.executor&quot;: &quot;Run&quot;,\r\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;main&quot;,\r\n    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,\r\n    &quot;onboarding.tips.debug.path&quot;: &quot;D:/java3/Gambler/src/Main.java&quot;\r\n  }\r\n}</component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"85f0dd32-c519-4310-9e22-ded9930bdee7\" name=\"Changes\" comment=\"\" />\r\n      <created>1706459293656</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1706459293656</updated>\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <breakpoints>\r\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\r\n          <url>file://$PROJECT_DIR$/src/Main.java</url>\r\n          <line>11</line>\r\n          <option name=\"timeStamp\" value=\"1\" />\r\n        </line-breakpoint>\r\n      </breakpoints>\r\n    </breakpoint-manager>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision c24f6177b990eabca92ae03fa230c8b8f8cb6455)
++++ b/.idea/workspace.xml	(date 1706506599703)
+@@ -21,6 +21,11 @@
+     </option>
+   </component>
+   <component name="Git.Settings">
++    <option name="RECENT_BRANCH_BY_REPOSITORY">
++      <map>
++        <entry key="$PROJECT_DIR$/.." value="main" />
++      </map>
++    </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+   </component>
+   <component name="ProjectColorInfo">{
+@@ -31,16 +36,16 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent">{
+-  &quot;keyToString&quot;: {
+-    &quot;Application.gambler.executor&quot;: &quot;Run&quot;,
+-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+-    &quot;onboarding.tips.debug.path&quot;: &quot;D:/java3/Gambler/src/Main.java&quot;
++  <component name="PropertiesComponent"><![CDATA[{
++  "keyToString": {
++    "Application.gambler.executor": "Run",
++    "RunOnceActivity.OpenProjectViewOnStart": "true",
++    "RunOnceActivity.ShowReadmeOnStart": "true",
++    "git-widget-placeholder": "uc3__resign",
++    "kotlin-language-version-configured": "true",
++    "onboarding.tips.debug.path": "D:/java3/Gambler/src/Main.java"
+   }
+-}</component>
++}]]></component>
+   <component name="SharedIndexes">
+     <attachedChunks>
+       <set>

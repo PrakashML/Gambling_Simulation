@@ -2,53 +2,55 @@ package com.workshop1.gambler;
 
 import java.util.Random;
 import java.util.Scanner;
-
 public class gambler {
-    int stake = 100;
-    int stakecalc = 100;
-    int bet = 1;
-    int numgames = 0;
-    int tot_win = 0;
-    int tot_lost = 0;
-    public gambler(){
-        this.stake = stake;
-        this.bet = bet;
+    int stake;
+    int bet;
+    int numgame;
+
+
+    public gambler() {
+        this.stake = 100;
+        this.bet = 1;
+        this.numgame = 10;
     }
-    public void game(){
-        boolean win = new Random().nextBoolean();
-        if(win){
-            stakecalc+=bet;
-            tot_win++;
-            System.out.println("You Won! Current stake: "+ stakecalc);
+
+    public static Boolean game(){
+        if (Math.random()<0.5){
+            return true;
         }
-        else{
-            stakecalc-=bet;
-            tot_lost++;
-            System.out.println("You lose! Current stake: "+ stakecalc);
+        else {
+            return false;
         }
     }
 
-    public void simulategame(int n){
-        for(int i=1;i<=n;i++){
-            
-            System.out.println("\nDay: " + i);
-            if(stake <= 0){
-                System.out.println("Out of money, Game over");
+    public static void Simulategame(int stake, int bet, int numgame){
+        String result;
+        for (int i=0; i<numgame; i++) {
+            if (game()) {
+                result = "win";
+                stake += bet;
+
+            } else {
+                result = "lost";
+                stake -= bet;
+            }
+            if (stake <= 50 || stake >= 150){
+                System.out.println("Not able to Play furthur");
                 break;
             }
-            while(stakecalc>0 && stakecalc>=0.5*stake){
-                game();
-            }
-            stakecalc = stake;
+
+
+            System.out.println("result: " + result);
+            System.out.println("stakeValue : " + stake);
         }
-        System.out.println("\nOverall results after 20 days: ");
-        System.out.println("Total Wins: " + tot_win);
-        System.out.println("Total lose: " + tot_lost);
     }
+
 
     public static void main(String[] args) {
         gambler g1 = new gambler();
-        g1.simulategame(20);
+        g1.Simulategame(100, 1, 20);
+        System.out.println(g1);
+
 
     }
 }

@@ -1,0 +1,19 @@
+Index: src/com/workshop1/gambler/gambler.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.workshop1.gambler;\r\n\r\nimport java.util.Random;\r\nimport java.util.Scanner;\r\n\r\npublic class gambler {\r\n    int stake = 100;\r\n    int stakecalc = 100;\r\n    int bet = 1;\r\n    int numgames = 0;\r\n    public gambler(){\r\n        this.stake = stake;\r\n        this.bet = bet;\r\n    }\r\n    public void game(){\r\n        boolean win = new Random().nextBoolean();\r\n        if(win){\r\n            stakecalc+=bet;\r\n            System.out.println(\"You Won! Current stake: \"+ stakecalc);\r\n        }\r\n        else{\r\n            stakecalc-=bet;\r\n            System.out.println(\"You lose! Current stake: \"+ stakecalc);\r\n        }\r\n    }\r\n\r\n    public void simulategame(int n){\r\n        for(int i=0;i<n;i++){\r\n            numgames+=1;\r\n            if(stake <= 0){\r\n                System.out.println(\"Out of money, Game over\");\r\n                break;\r\n            }\r\n            game();\r\n            if(stakecalc<=0.5*stake){\r\n                System.out.println(\"Resigning for the Day. Current stake: \" + stakecalc);\r\n                System.out.println(\"No of games played for the day: \"+ numgames);\r\n                break;\r\n            }\r\n        }\r\n    }\r\n\r\n    public static void main(String[] args) {\r\n        gambler g1 = new gambler();\r\n        g1.simulategame(Integer.MAX_VALUE);\r\n\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/com/workshop1/gambler/gambler.java b/src/com/workshop1/gambler/gambler.java
+--- a/src/com/workshop1/gambler/gambler.java	
++++ b/src/com/workshop1/gambler/gambler.java	
+@@ -42,7 +42,7 @@
+ 
+     public static void main(String[] args) {
+         gambler g1 = new gambler();
+-        g1.simulategame(Integer.MAX_VALUE);
++        g1.simulategame();
+ 
+     }
+ }

@@ -1,0 +1,52 @@
+Index: src/com/workshop1/gambler/gambler.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.workshop1.gambler;\r\n\r\nimport java.util.Random;\r\nimport java.util.Scanner;\r\n\r\npublic class gambler {\r\n    int stake = 100;\r\n    int stakecalc = 100;\r\n    int bet = 1;\r\n    int numgames = 0;\r\n    int tot_win = 0;\r\n    int tot_lost = 0;\r\n    public gambler(){\r\n        this.stake = stake;\r\n        this.bet = bet;\r\n    }\r\n    public void game(){\r\n        boolean win = new Random().nextBoolean();\r\n        if(win){\r\n            stakecalc+=bet;\r\n            tot_win++;\r\n            System.out.println(\"You Won! Current stake: \"+ stakecalc);\r\n        }\r\n        else{\r\n            stakecalc-=bet;\r\n            tot_lost++;\r\n            System.out.println(\"You lose! Current stake: \"+ stakecalc);\r\n        }\r\n    }\r\n\r\n    public void simulategame(int n){\r\n        for(int i=1;i<=n;i++){\r\n            \r\n            System.out.println(\"\\nDay: \" + i);\r\n            if(stake <= 0){\r\n                System.out.println(\"Out of money, Game over\");\r\n                break;\r\n            }\r\n            while(stakecalc>0 && stakecalc>=0.5*stake){\r\n                game();\r\n            }\r\n            stakecalc = stake;\r\n        }\r\n        System.out.println(\"\\nOverall results after 20 days: \");\r\n        System.out.println(\"Total Wins: \" + tot_win);\r\n        System.out.println(\"Total lose: \" + tot_lost);\r\n    }\r\n\r\n    public static void main(String[] args) {\r\n        gambler g1 = new gambler();\r\n        g1.simulategame(20);\r\n\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/com/workshop1/gambler/gambler.java b/src/com/workshop1/gambler/gambler.java
+--- a/src/com/workshop1/gambler/gambler.java	
++++ b/src/com/workshop1/gambler/gambler.java	
+@@ -28,19 +28,19 @@
+         }
+     }
+ 
+-    public void simulategame(int n){
+-        for(int i=1;i<=n;i++){
+-            
+-            System.out.println("\nDay: " + i);
+-            if(stake <= 0){
+-                System.out.println("Out of money, Game over");
+-                break;
+-            }
+-            while(stakecalc>0 && stakecalc>=0.5*stake){
+-                game();
+-            }
+-            stakecalc = stake;
+-        }
++    public void simulategame(int d, int m){
++            for(int i=1;i<=d;i++){
++                System.out.println("\nDay: " + i);
++                if(stake <= 0){
++                    System.out.println("Out of money, Game over");
++                    break;
++                }
++                while(stakecalc>0 && stakecalc>=0.5*stake && stakecalc<=1.5*stake){
++                    game();
++                }
++                stakecalc = stake;
++            }
++
+         System.out.println("\nOverall results after 20 days: ");
+         System.out.println("Total Wins: " + tot_win);
+         System.out.println("Total lose: " + tot_lost);
+@@ -48,7 +48,7 @@
+ 
+     public static void main(String[] args) {
+         gambler g1 = new gambler();
+-        g1.simulategame(20);
++        g1.simulategame(20, 12);
+ 
+     }
+ }
