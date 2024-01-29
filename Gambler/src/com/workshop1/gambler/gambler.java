@@ -30,6 +30,7 @@ public class gambler {
 
     public void simulategame(int n){
         for(int i=1;i<=n;i++){
+            
             System.out.println("\nDay: " + i);
             if(stake <= 0){
                 System.out.println("Out of money, Game over");
